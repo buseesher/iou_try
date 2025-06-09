@@ -20,10 +20,10 @@ drive.mount('/content/drive')
 
 import PIL.Image as Image
 
-# Resmi açın
+# Open the image
 img = Image.open('/content/drive/MyDrive/iou resmi.png')
 
-# İlk koordinatları alın ve resim boyutuna dönüştürün
+# Get the first label and convert to image dimensions
 label1 = '0 0.560059 0.830811 0.614258 0.071777'
 label1_parts = label1.split()
 x1 = float(label1_parts[1]) * img.width
@@ -32,7 +32,7 @@ w1 = float(label1_parts[3]) * img.width
 h1 = float(label1_parts[4]) * img.height
 bbox1 = (x1, y1, x1 + w1, y1 + h1)
 
-# İkinci koordinatları alın ve resim boyutuna dönüştürün
+# Get the second label and convert to image dimensions
 label2 = '0 0.562744 0.842041 0.626465 0.164551'
 label2_parts = label2.split()
 x2 = float(label2_parts[1]) * img.width
@@ -41,12 +41,12 @@ w2 = float(label2_parts[3]) * img.width
 h2 = float(label2_parts[4]) * img.height
 bbox2 = (x2, y2, x2 + w2, y2 + h2)
 
-# Kutucukları resim üzerine çizin
+# Draw the bounding boxes on the image
 from PIL import ImageDraw
 
 draw = ImageDraw.Draw(img)
 draw.rectangle(bbox1, outline='red', width=3)
 draw.rectangle(bbox2, outline='blue', width=3)
 
-# Resmi ekranda gösterin
+# Show the image
 img.show()
